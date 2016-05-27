@@ -1,0 +1,28 @@
+{
+	"name" : "__MSG_name__",
+	"description" : "__MSG_description__",
+	"version" : "1.0",
+	"manifest_version" : 2,
+	"default_locale" : "zh_CN",
+	"icons" : {
+		"16" : "icon.png",
+		"48" : "icon.png",
+		"128" : "icon.png"
+	},
+	"browser_action" : {
+		"default_icon" : "icon.png"
+	},
+	"background" : {
+		"scripts" : [ "background.js" ]
+	},
+	"content_scripts": [
+		{
+			"matches" : [ "http://localhost/*" ],
+			"js": [ "inject.js" ],
+			"run_at": "document_start"
+		}
+	],
+	"permissions" : [
+		"<all_urls>", "webRequest", "webRequestBlocking", "storage"
+	]
+}
