@@ -16,7 +16,11 @@ chrome.storage.local.get(config => {
 	let urls = [];
 
 	[].forEach.call(links, link => {
-		urls.push( getAbsoluteUrl( link.getAttribute( 'href' ) ) );
+		const href = link.getAttribute( 'href' );
+		if( !/\.css$/.test( href ) ) {
+			return;
+		}
+		urls.push( getAbsoluteUrl( href ) );
 		let p = new Promise(( resolve, reject ) => {
 			link.onload = () => {
 				resolve();
